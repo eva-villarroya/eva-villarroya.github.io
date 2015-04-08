@@ -1,0 +1,68 @@
+/**
+ * @license
+ * MyFonts Webfont Build ID 3003654, 2015-04-05T13:00:43-0400
+ * 
+ * The fonts listed in this notice are subject to the End User License
+ * Agreement(s) entered into by the website owner. All other parties are 
+ * explicitly restricted from using the Licensed ../fonts(s).
+ * 
+ * You may obtain a valid license at the URLs below.
+ * 
+ * Webfont: CamingoCode-Italic by Jan Fromm
+ * URL: http://www.myfonts.com/fonts/jan-fromm/camingo-code/italic/
+ * 
+ * Webfont: CamingoCode-Regular by Jan Fromm
+ * URL: http://www.myfonts.com/fonts/jan-fromm/camingo-code/regular/
+ * 
+ * Webfont: CamingoCode-Bold by Jan Fromm
+ * URL: http://www.myfonts.com/fonts/jan-fromm/camingo-code/bold/
+ * 
+ * Webfont: CamingoCode-BoldItalic by Jan Fromm
+ * URL: http://www.myfonts.com/fonts/jan-fromm/camingo-code/bold-italic/
+ * 
+ * 
+ * License: http://www.myfonts.com/viewlicense?type=web&buildid=3003654
+ * Licensed pageviews: 10,000
+ * ../fonts copyright: Copyright (c) 2006-2013 by Jan Fromm. All rights reserved.
+ * 
+ * © 2015 MyFonts Inc
+*/
+
+
+/* @import must be at top of file, otherwise CSS will not work */
+@import url("//hello.myfonts.net/count/2dd506");
+
+  
+@font-face {font-family: 'CamingoCode-Italic';src: url('../fonts/2DD506_0_0.eot');src: url('../fonts/2DD506_0_0.eot?#iefix') format('embedded-opentype'),url('../fonts/2DD506_0_0.woff2') format('woff2'),url('../fonts/2DD506_0_0.woff') format('woff'),url('../fonts/2DD506_0_0.ttf') format('truetype');}
+ 
+  
+@font-face {font-family: 'CamingoCode-Regular';src: url('../fonts/2DD506_1_0.eot');src: url('../fonts/2DD506_1_0.eot?#iefix') format('embedded-opentype'),url('../fonts/2DD506_1_0.woff2') format('woff2'),url('../fonts/2DD506_1_0.woff') format('woff'),url('../fonts/2DD506_1_0.ttf') format('truetype');}
+ 
+  
+@font-face {font-family: 'CamingoCode-Bold';src: url('../fonts/2DD506_2_0.eot');src: url('../fonts/2DD506_2_0.eot?#iefix') format('embedded-opentype'),url('../fonts/2DD506_2_0.woff2') format('woff2'),url('../fonts/2DD506_2_0.woff') format('woff'),url('../fonts/2DD506_2_0.ttf') format('truetype');}
+ 
+  
+@font-face {font-family: 'CamingoCode-BoldItalic';src: url('../fonts/2DD506_3_0.eot');src: url('../fonts/2DD506_3_0.eot?#iefix') format('embedded-opentype'),url('../fonts/2DD506_3_0.woff2') format('woff2'),url('../fonts/2DD506_3_0.woff') format('woff'),url('../fonts/2DD506_3_0.ttf') format('truetype');}
+
+
+.CamingoCode-Italic { 
+	font-family: CamingoCode-Italic;
+	font-weight: normal;
+	font-style: normal;
+}
+.CamingoCode-Regular { 
+	font-family: CamingoCode-Regular;
+	font-weight: normal;
+	font-style: normal;
+}
+.CamingoCode-Bold { 
+	font-family: CamingoCode-Bold;
+	font-weight: normal;
+	font-style: normal;
+}
+.CamingoCode-BoldItalic { 
+	font-family: CamingoCode-BoldItalic;
+	font-weight: normal;
+	font-style: normal;
+}
+ 
