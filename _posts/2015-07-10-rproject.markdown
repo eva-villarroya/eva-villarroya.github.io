@@ -137,6 +137,6 @@ Also the plot can be saved to a file:
 
 ![Cities histogram](/img/citiesHistogram.png)
 
-While all this says nothing about the capabilities I am specifically looking for in this tool. So far, if you want a tool to explore data and extract metrics, I think R is a good tool. Is not hard to get hands on, you can do as much as the above in less than a working day.
+While all this says nothing about the capabilities I am specifically looking for in this tool looks like a good foundation. So far, if you want a tool to explore data and extract metrics, I think R is a good tool. Is not hard to get hands on, you can do as much as the above in less than a working day.
 
 Will come back another day with creating subsets and exporting data.
