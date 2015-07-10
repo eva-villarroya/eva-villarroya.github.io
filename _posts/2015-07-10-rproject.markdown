@@ -4,7 +4,7 @@ title:      "R project"
 subtitle:   "Statistics tool for dataload"
 date:       2015-07-10 12:00:00
 author:     "Eva"
-header-img: "img/initialsetup.jpg"
+header-img: "img/rproject.jpg"
 ---
 
 <p>I have spent some time learning Haskell, as you can see in my <a href="https://gist.github.com/eva-villarroya">gists</a>. Now I decided to explore other tools for a common problem I found at work, data loads.</p>
