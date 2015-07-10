@@ -1,0 +1,142 @@
+---
+layout:     post
+title:      "R project"
+subtitle:   "Statistics tool for dataload"
+date:       2015-07-10 12:00:00
+author:     "Eva"
+header-img: "img/initialsetup.jpg"
+---
+
+<p>I have spent some time learning Haskell, as you can see in my <a href="https://gist.github.com/eva-villarroya">gists</a>. Now I decided to explore other tools for a common problem I found at work, data loads.</p>
+
+<p>While is plenty of tools out there, I haven't really found a solution for data subsets. I have heard many good things about R, so I will investigate it.</p>
+
+<p>For now, I have installed it, set it up and started playing loading data from a JSON file.</p>
+
+<p>I have installed it from the Ubuntu package manager, as explained in <a href="http://cran.r-project.org/bin/linux/ubuntu/README">this document</a>.</p>
+
+<p>To start it just type 'R' in the command line, and the interactive session begins. I have found <a href="http://math.usask.ca/~longhai/doc/others/R-tutorial.pdf">this document</a> very concise to start with.</p>
+
+<p>I installed some additional packages to deal with JSON, as explained <a href="http://gastonsanchez.com/work/webdata/getting_web_data_r5_json_data.pdf">here</a>. It's easier if you use the command in R as follows:</p>
+
+<pre><code class="bash CamingoCode-Bold">
+install.packages('RMySQL', repos='http://cran.us.r-project.org')
+</code></pre>
+
+<p>I got a big data set from <a href="http://bulk.openweathermap.org/sample/">here</a>, for now just the list of cities. </p>
+
+<p>Here comes some details about the data load into R:</p>
+
+<pre><code class="bash CamingoCode-Bold">
+> R
+
+R version 3.2.1 (2015-06-18) -- "World-Famous Astronaut"
+[... some lines removed here ...]
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> library(jsonlite)
+
+Attaching package: ‘jsonlite’
+
+The following object is masked from ‘package:utils’:
+
+    View
+
+> json_file <- "city.list.json"
+> dat <- fromJSON(sprintf("[%s]", paste(readLines(json_file), collapse=",")))
+> dim(dat)
+[1] 209579      4
+> head(dat)
+      _id             name country coord.lon coord.lat
+1  707860           Hurzuf      UA  34.28333  44.55000
+2  519188          Novinki      RU  37.66667  55.68333
+3 1283378           Gorkhā      NP  84.63333  28.00000
+4 1270260 State of Haryāna      IN  76.00000  29.00000
+5  708546        Holubynka      UA  33.90000  44.60000
+6 1283710     Bāgmatī Zone      NP  85.41666  28.00000
+> q()
+Save workspace image? [y/n/c]: n
+
+</code></pre>
+
+We can perform SQL-like operations in R data frames, like filtering by some condition (I also used function head to show the first elements, since the data set is big):
+
+<pre><code class="bash CamingoCode-Bold">
+> head(dat[grep("es", dat$country, ignore.case=T),])
+        _id                    name country coord.lon coord.lat
+108 3113208 Provincia de Pontevedra      ES  -8.50000  42.50000
+229 6361023                   Osuna      ES  -5.11371  37.22229
+230 6361010            Lora del Río      ES  -5.48845  37.66015
+231 6359459              Fuengirola      ES  -4.61206  36.55149
+232 6358465                  Bailén      ES  -3.78418  38.08023
+233 6362958                   Utebo      ES  -1.00454  41.71559
+</code></pre>
+
+
+JSON data structures often contain nested structures, which in R would be loaded as nested data frames. The cities data I loaded contains coordinates as a nested object: 
+
+<pre><code class="bash CamingoCode-Bold">
+> dim(dat)
+[1] 209579      4
+> sapply(dat, class)
+         _id         name      country        coord 
+   "integer"  "character"  "character" "data.frame" 
+</code></pre>
+
+To flatten such structures I created a shorthand for the nested data frame, then I used cbind to append the nested object columns to the main object columns all into a new data frame, where data looks the same but now with a flat data structure:
+
+<pre><code class="bash CamingoCode-Bold">
+> coord = dat$coord
+> cities <- cbind(dat[, c("_id", "name", "country")], coord[, c("lon", "lat")])
+> dim(cities)
+[1] 209579      5
+> sapply(cities, class)
+        _id        name     country         lon         lat 
+  "integer" "character" "character"   "numeric"   "numeric"
+> head(cities[grep("es", cities$country, ignore.case=T),])
+          _id                    name country      lon      lat
+  108 3113208 Provincia de Pontevedra      ES -8.50000 42.50000
+  229 6361023                   Osuna      ES -5.11371 37.22229
+  230 6361010            Lora del Río      ES -5.48845 37.66015
+  231 6359459              Fuengirola      ES -4.61206 36.55149
+  232 6358465                  Bailén      ES -3.78418 38.08023
+  233 6362958                   Utebo      ES -1.00454 41.71559
+</code></pre>
+
+Similar approach could be used to create two data frames, one for cities and another for coordinates, just making sure both have a key column in common.
+
+A very interesting plugin for R, sqldf, allows to run SQL on data frames.
+
+<pre><code class="bash CamingoCode-Bold">
+> head(sqldf("select country, count(*) as count from cities where country is not null group by country order by count desc"))
+  country count
+1      DE 28786
+2      US 19972
+3      FR 19965
+4      ES 15439
+5      IT  9878
+6      RU  8768
+</code></pre>
+
+Then, is very easy to visualize data with plots:
+
+<pre><code class="bash CamingoCode-Bold">
+> DF=sqldf("select country from cities where country is not null")
+> ggplot(data=DF, aes(DF$country)) + geom_histogram(breaks=seq(20, 50, by =2), col="red", aes(fill=..count..)) + scale_fill_gradient("Count", low = "green", high = "red") + labs(title="Histogram for Cities")  + labs(x="Country", y="Count")
+</code></pre>
+
+Also the plot can be saved to a file:
+
+<pre><code class="bash CamingoCode-Bold">
+> citiesHistogram <- ggplot(data=DF, aes(DF$country)) + geom_histogram(breaks=seq(20, 50, by =2), col="red", aes(fill=..count..)) + scale_fill_gradient("Count", low = "green", high = "red") + labs(title="Histogram for Cities")  + labs(x="Country", y="Count")
+> ggsave(filename="citiesHistogram.png", plot=citiesHistogram)
+</code></pre>
+
+![Cities histogram](/img/citiesHistogram.png)
+
+While all this says nothing about the capabilities I am specifically looking for in this tool. So far, if you want a tool to explore data and extract metrics, I think R is a good tool. Is not hard to get hands on, you can do as much as the above in less than a working day.
+
+Will come back another day with creating subsets and exporting data.
