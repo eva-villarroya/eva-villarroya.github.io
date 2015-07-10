@@ -8,9 +8,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Learning Haskell for fun">
 
-    <title>About - Learning Haskell</title>
+    <title>Initial setup - Learning Haskell</title>
 
-    <link rel="canonical" href="http://eva-villarroya.github.io/about/">
+    <link rel="canonical" href="http://eva-villarroya.github.io/eva-villarroya.github.io/2015/04/07/setup/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -104,34 +104,86 @@
 </nav>
 
 
-    <!-- Page Header -->
-<header class="intro-header" style="background-image: url('/img/about-bg.jpg')">
+    <!-- Post Header -->
+<header class="intro-header" style="background-image: url('/img/initialsetup.jpg')">
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <div class="site-heading">
-                    <h1>About</h1>
-                    <hr class="small">
-                    <span class="subheading">This is what I do.</span>
+                <div class="post-heading">
+                    <h1>Initial setup</h1>
+                    
+                    <h2 class="subheading">How all this started</h2>
+                    
+                    <span class="meta">Posted by Eva on April 7, 2015</span>
                 </div>
             </div>
         </div>
     </div>
 </header>
 
-<!-- Main Content -->
-<div class="container">
-	<div class="row">
-		<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe nostrum ullam eveniet pariatur voluptates odit, fuga atque ea nobis sit soluta odio, adipisci quas excepturi maxime quae totam ducimus consectetur?</p>
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
 
-<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius praesentium recusandae illo eaque architecto error, repellendus iusto reprehenderit, doloribus, minus sunt. Numquam at quae voluptatum in officia voluptas voluptatibus, minus!</p>
+				<p>I decided to learn functional programming, and here come my very first steps.</p>
 
-<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nostrum molestiae debitis nobis, quod sapiente qui voluptatum, placeat magni repudiandae accusantium fugit quas labore non rerum possimus, corrupti enim modi! Et.</p>
+<p>First, I made decision about what functional programming language to learn. After doing some research about few of them, Lisp, Python and Haskell, I chose the last one. For no special reason, really, it looked cool and enough resources are available.</p>
 
-		</div>
-	</div>
-</div>
+<p>Then, I also decided to blog about my learning process, for my record, and just in case it could help anyone else out there. I had to think about a blogging platform or tools. I decided to go for <a href="https://pages.github.com/">GitHub pages</a> and <a href="http://jekyllrb.com/docs/home/">Jekyll</a>. This combination of tools, despite requiring more effort compared to a fully hosted solution, I think would be more flexible and maybe I could learn something by the way.</p>
+
+<p>While both Github pages and Jekyll do have good documentation and is very easy to start with them, even if frontend is not really my thing. Still I found a couple of issues.</p>
+
+<p>I am using Ubuntu, and while trying to install Jekyll I got some error messages and it failed to install. I could solved quite easy following <a href="http://stackoverflow.com/questions/13767725/unable-to-install-gem-failed-to-build-gem-native-extension-cannot-load-such">this explanation</a>, installing ruby-dev.</p>
+
+<p>Once I had Jekyll installed locally, still I had issues trying to run the server. It was complaining no Javascript runtime was found. I checked <a href="https://github.com/jekyll/jekyll/issues/2327">this thread</a> about same issue, and for me installing therubytracer worked just fine.</p>
+
+<p>After having Jekyll up and running, I chose a <a href="https://github.com/IronSummitMedia/startbootstrap-clean-blog-jekyll">blog template</a> and added some nice <a href="https://highlightjs.org/">code formatting</a>.</p>
+
+<p>And finally, the good stuff can start, my first contact with Haskell. I am using a couple of books, <a href="http://book.realworldhaskell.org/">Real world Haskell</a> and <a href="http://learnyouahaskell.com/">Learn you a Haskell for great good</a>.</p>
+
+<p>I have just gone through the first chapter of each book, and I am already glad I have chosen Haskell. The code is compact and expressful; specially compared to Java.</p>
+
+<p>I will be posting my code to GitHub, either as project or for simple things as a Gist. For those looking for the exercise solution at the end of the first chapter of Real world Haskell, you can check it out <a href="https://gist.github.com/eva-villarroya/7d3ea3b6ac628a2b876c">here</a>.</p>
+
+<p>I am using gist from the command line, and since it required some trial and error, here comes a compilation of useful commands.</p>
+
+<pre><code class="bash CamingoCode-Bold">
+&gt; gist --login
+Obtaining OAuth2 access_token from github.
+GitHub username: eva-villarroya
+GitHub password: 
+Success! https://github.com/settings/applications
+&gt; gist WC.hs
+https://gist.github.com/1fe0cef32f88f83e0e61
+&gt; gist -u 7d3ea3b6ac628a2b876c WC.hs
+https://gist.github.com/7d3ea3b6ac628a2b876c
+</code></pre>
+
+<p>Note how after commiting for first time, an identifier is returned as part of the gist URL. From there on, that file can be updated by referencing that same id. If no id is supplied, a different gist is created.</p>
+
+
+
+                <hr>
+
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/stg.eva-villarroya.github.io/2015/04/07/setup/" data-toggle="tooltip" data-placement="top" title="Initial setup">&larr; Previous Post</a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="/stg.eva-villarroya.github.io/2015/07/10/rproject/" data-toggle="tooltip" data-placement="top" title="R project">Next Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+
+            </div>
+        </div>
+    </div>
+</article>
 
 <hr>
 
