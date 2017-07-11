@@ -32,6 +32,7 @@ function notifyMe() {
   else if (Notification.permission === "granted") {
     // If it's okay let's create a notification
     var notification = new Notification("There are new orders to fulfill");
+	  window.navigator.vibrate(500);
   }
 
   // Otherwise, we need to ask the user for permission
@@ -40,6 +41,7 @@ function notifyMe() {
       // If the user accepts, let's create a notification
       if (permission === "granted") {
         var notification = new Notification("There are new orders to fulfill");
+	      window.navigator.vibrate(500);
       }
     });
   }
